@@ -1,0 +1,9 @@
+from rest_framework import serializers
+from .models import Mechanic
+
+
+class MechanicSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Mechanic
+        fields = ['id', 'user', 'name', 'address', 'city', 'rating', 'created_at']
+        read_only_fields = ['id', 'user', 'rating', 'created_at']

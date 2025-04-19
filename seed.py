@@ -47,7 +47,7 @@ services_data = [
     {
         "name": "Diagnostyka komputerowa",
         "price": 100.00,
-        "duration": timedelta(minutes=20),
+        "duration": timedelta(minutes=60),
     },
     {
         "name": "Wymiana klocków hamulcowych",

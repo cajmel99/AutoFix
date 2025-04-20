@@ -52,7 +52,7 @@ services_data = [
     {
         "name": "Wymiana klocków hamulcowych",
         "price": 200.00,
-        "duration": timedelta(minutes=45),
+        "duration": timedelta(minutes=90),
     },
     {"name": "Serwis klimatyzacji", "price": 250.00, "duration": timedelta(hours=1)},
 ]

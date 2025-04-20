@@ -57,3 +57,42 @@ AutoFix/
 ├── services/        # Usługi warsztatu
 ├── manage.py
 └── mechanic_booking/  # ustawienia projektu
+```
+
+# Rezerwacje
+
+### Ustawienie godzin pracy przez mechanika
+1. `GET /api/mechanic/working-hours/`  
+   – pobranie wszystkich ustawionych godzin pracy  
+2. `POST /api/mechanic/working-hours/`  
+   – dodanie godzin pracy dla danego dnia  
+3. `GET /api/mechanic/working-hours/<id>/`  
+   – pobranie rekordu ustawionych godzin pracy dla danego dnia  
+4. `PATCH/PUT /api/mechanic/working-hours/<id>/`  
+   – aktualizacja ustawionych godzin pracy  
+5. `DELETE /api/mechanic/working-hours/<id>/`  
+   – usunięcie rekordu ustawionych godzin pracy dla danego dnia  
+
+---
+
+### Zarządzanie wizytami przez mechanika
+1. `GET /api/mechanic/appointments/`  
+   – pobranie listy wizyt dla danego mechanika  
+2. `PATCH/PUT /api/mechanic/appointments/<id>/update-status/`  
+   – aktualizacja statusu wizyty przez mechanika (np. zmiana z `pending` na `confirmed`)  
+
+---
+
+### Zarządzanie wizytami przez klienta
+1. `GET /api/client/appointments/list/`  
+   – pobranie listy wizyt przez klienta  
+2. `PATCH/PUT /api/client/appointments/cancel/<id>/`  
+   – anulowanie wizyty przez klienta  
+3. `GET /api/client/available-timeslots/<service_id>/<appointment_date>/`  
+   – pobranie dostępnych timeslotów dla wybranej usługi w danym dniu  
+4. `POST /api/client/appointments/`  
+   – utworzenie wizyty przez klienta (należy przesłać `service_id` oraz `date`, czyli jeden z dostępnych time slotów)  
+
+## Uruchomienie bazy danych PostgreSQL
+- Skrypt [start_postgres.sh](start_postgres.sh) uruchamia kontener Docker z bazą danych PostgreSQL z odpowiednimi credentialami.
+- Skrypt [seed.py](seed.py) dodaje przykładowe dane do bazy danych.

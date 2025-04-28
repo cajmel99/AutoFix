@@ -42,6 +42,8 @@ urlpatterns = [
     path('api/', include('services.urls')),
     path('api/', include('reservations.urls')),
     path('api/payments/', include('payments.urls')),
+
+    path('api/reviews/', include('reviews.urls')),
     path('swagger/', schema_view.with_ui('swagger', cache_timeout=0)),
     path('redoc/', schema_view.with_ui('redoc', cache_timeout=0)),
 ]

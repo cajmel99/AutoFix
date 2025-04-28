@@ -44,7 +44,8 @@ INSTALLED_APPS = [
     'mechanics',
     'services',
     'reservations',
-    'payments'
+    'payments',
+    'reviews'
 ]
 
 MIDDLEWARE = [
@@ -107,7 +108,6 @@ DATABASES = {
         'PORT': '5434',
     }
 }
-
 
 
 

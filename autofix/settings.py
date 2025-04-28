@@ -37,12 +37,14 @@ INSTALLED_APPS = [
     "django.contrib.sessions",
     "django.contrib.messages",
     "django.contrib.staticfiles",
+    'drf_yasg',
     'rest_framework',
     'corsheaders',
     'users',
     'mechanics',
     'services',
-    'reservations'
+    'reservations',
+    'payments'
 ]
 
 MIDDLEWARE = [
@@ -105,6 +107,7 @@ DATABASES = {
         'PORT': '5434',
     }
 }
+
 
 
 

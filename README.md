@@ -49,12 +49,26 @@ python manage.py migrate
 
 ---
 
+### payments
+
+| Endpoint                                  | Metoda | Opis                            |
+|-------------------------------------------|--------|---------------------------------|
+| `/payments/`                              | GET    | Lista wszystkich płatności      |
+| `/payments/`                              | POST   | Tworzenie nowej płatności       |
+| `/payments/{id}/`		            | GET    | Pobranie detali płatności       |
+| `/payments/{id}/`		            | PUT    | Aktualizacja płatności          |
+
+
+---
+
+
 ## 📁 Struktura projektu
 AutoFix/
 │
 ├── users/           # Rejestracja, JWT, model User
 ├── mechanics/       # Profil warsztatu (Mechanic)
 ├── services/        # Usługi warsztatu
+├── payments/        # Płatności
 ├── manage.py
 └── mechanic_booking/  # ustawienia projektu
 ```

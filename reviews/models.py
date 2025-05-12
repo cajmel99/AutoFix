@@ -12,4 +12,4 @@ class Review(models.Model):
     note = models.IntegerField(validators=[MinValueValidator(1),MaxValueValidator(10)])
     content = models.TextField(default='', blank=True, null=True)
     created_at = models.DateTimeField(auto_now_add=True)  # data utworzenia
-    updated_at = models.DateTimeField(auto_now_add=True)  # data aktualizacji
+    updated_at = models.DateTimeField(auto_now=True)  # data aktualizacji

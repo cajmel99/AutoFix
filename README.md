@@ -61,6 +61,19 @@ python manage.py migrate
 
 ---
 
+### reviews
+
+| Endpoint                                  | Metoda | Opis                            |
+|-------------------------------------------|--------|---------------------------------|
+| `/reviews/`                               | GET    | Lista wszystkich opinii         |
+| `/reviews/`                               | POST   | Tworzenie nowej opinii          |
+| `/reviews/{service_id}/{id}`	            | GET    | Pobranie detali opinii          |
+| `/reviews/{service_id}/{id}`	            | PUT    | Aktualizacja opinii             |
+
+
+---
+
+
 
 ## 📁 Struktura projektu
 AutoFix/
@@ -69,6 +82,7 @@ AutoFix/
 ├── mechanics/       # Profil warsztatu (Mechanic)
 ├── services/        # Usługi warsztatu
 ├── payments/        # Płatności
+├── reviews/         # Opinie
 ├── manage.py
 └── mechanic_booking/  # ustawienia projektu
 ```

@@ -2,6 +2,8 @@ from rest_framework import serializers
 from django.utils.timezone import make_aware
 from reservations.models import WorkingHours, Appointment
 from reservations.utils import get_available_timeslots
+from users.serializers import UserSerializer
+from services.serializers import ServiceSerializer
 
 
 class WorkingHoursSerializer(serializers.ModelSerializer):
@@ -11,6 +13,9 @@ class WorkingHoursSerializer(serializers.ModelSerializer):
 
 
 class AppointmentSerializer(serializers.ModelSerializer):
+    service = ServiceSerializer(read_only=True)
+    client_user = UserSerializer(read_only=True)
+
     class Meta:
         model = Appointment
         fields = ["id", "client_user", "service", "date", "status"]

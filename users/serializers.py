@@ -23,3 +23,10 @@ class CustomTokenObtainPairSerializer(TokenObtainPairSerializer):
         data = super().validate(attrs)
         data['role'] = self.user.role  # Include role in login response
         return data
+
+
+class UserSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ['id', 'email', 'name', 'surname', 'phone', 'role', 'created_at']
+        read_only_fields = ['id', 'email', 'role', 'created_at']

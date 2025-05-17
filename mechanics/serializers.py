@@ -1,8 +1,10 @@
 from rest_framework import serializers
 from .models import Mechanic
+from users.serializers import UserSerializer
 
 
 class MechanicSerializer(serializers.ModelSerializer):
+    user = UserSerializer(read_only=True)
     class Meta:
         model = Mechanic
         fields = ['id', 'user', 'name', 'address', 'city', 'rating', 'created_at']

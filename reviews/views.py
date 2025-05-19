@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework import status, permissions, generics
 from .models import Review, Service
 from rest_framework import viewsets
-from .serializers import ReviewSerializer, ReviewCreateUpdateSerializer
+from .serializers import ReviewSerializer, ReviewCreateUpdateSerializer, ReviewSerializerMechanic
 from drf_yasg.utils import swagger_auto_schema
 from rest_framework.generics import RetrieveUpdateDestroyAPIView
 from rest_framework.exceptions import MethodNotAllowed
@@ -77,8 +77,8 @@ class MechanicReviewListView(APIView): #
     def get(self, request, *args, **kwargs):
         mechanic_id = kwargs.get('mechanic_id')
         # Pobieramy wszystkie recenzje, których usługa należy do tego mechanika
-        reviews = Review.objects.filter(service__mechanic_id=mechanic_id)
-        serializer = ReviewSerializer(reviews, many=True)
+        reviews = Review.objects.filter(service__mechanic_id=mechanic_id).select_related('service', 'user')
+        serializer = ReviewSerializerMechanic(reviews, many=True)
         return Response(serializer.data, status=status.HTTP_200_OK)
 
 

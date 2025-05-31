@@ -1,6 +1,7 @@
 from rest_framework import generics, permissions, status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from rest_framework.exceptions import NotFound
 from reservations.models import WorkingHours, Appointment, Mechanic
 from reservations.serializers import WorkingHoursSerializer, AppointmentSerializer
 from reservations.utils import get_available_timeslots
@@ -41,6 +42,17 @@ class ClientAppointmentsListView(generics.ListAPIView):
 
     def get_queryset(self):
         return Appointment.objects.filter(client_user=self.request.user)
+
+
+class ClientCheckWorkingHoursView(generics.ListAPIView):
+    serializer_class = WorkingHoursSerializer
+    permission_classes = [permissions.AllowAny]
+
+    def get_queryset(self):
+        mechanic_id = self.kwargs.get("mechanic_id")
+        if not Mechanic.objects.filter(id=mechanic_id).exists():
+            raise NotFound("Mechanic not found.")
+        return WorkingHours.objects.filter(mechanic_id=mechanic_id)
 
 
 # Mechanic endpoints

@@ -8,6 +8,7 @@ from reservations.views import (
     AppointmentStatusUpdateView,
     AvailableTimeslotsView,
     MechanicWorkingHoursDetailView,
+    ClientCheckWorkingHoursView,
 )
 
 urlpatterns = [
@@ -53,4 +54,8 @@ urlpatterns = [
         AppointmentStatusUpdateView.as_view(),
         name="update_appointment_status",
     ),
+]
+
+urlpatterns += [
+    path("mechanics/<int:mechanic_id>/working-hours/", ClientCheckWorkingHoursView.as_view(), name="mechanic-working-hours"),
 ]

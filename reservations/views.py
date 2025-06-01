@@ -3,7 +3,7 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework.exceptions import NotFound
 from reservations.models import WorkingHours, Appointment, Mechanic
-from reservations.serializers import WorkingHoursSerializer, AppointmentSerializer
+from reservations.serializers import WorkingHoursSerializer, AppointmentSerializer, AppointmentSerializer2
 from reservations.utils import get_available_timeslots
 from users.permissions import IsMechanic, IsClient
 from django.http import JsonResponse
@@ -16,7 +16,7 @@ from services.models import Service
 
 # Client endpoints
 class AppointmentCreateView(generics.CreateAPIView):
-    serializer_class = AppointmentSerializer
+    serializer_class = AppointmentSerializer2
     permission_classes = [permissions.IsAuthenticated, IsClient]
 
     def perform_create(self, serializer):
@@ -24,7 +24,7 @@ class AppointmentCreateView(generics.CreateAPIView):
 
 
 class AppointmentCancelView(generics.UpdateAPIView):
-    serializer_class = AppointmentSerializer
+    serializer_class = AppointmentSerializer2
     permission_classes = [permissions.IsAuthenticated, IsClient]
 
     def get_queryset(self):
@@ -92,7 +92,7 @@ class MechanicAppointmentsListView(generics.ListAPIView):
 
 
 class AppointmentStatusUpdateView(generics.UpdateAPIView):
-    serializer_class = AppointmentSerializer
+    serializer_class = AppointmentSerializer2
     permission_classes = [permissions.IsAuthenticated, IsMechanic]
 
     def get_queryset(self):

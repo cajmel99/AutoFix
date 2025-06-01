@@ -37,3 +37,27 @@ class AppointmentSerializer(serializers.ModelSerializer):
             raise serializers.ValidationError("This timeslot is not available.")
 
         return attrs
+
+
+class AppointmentSerializer2(serializers.ModelSerializer):
+    class Meta:
+        model = Appointment
+        fields = ["id", "client_user", "service", "date", "status"]
+        read_only_fields = ["id", "client_user", "status"]
+
+    def validate(self, attrs):
+        service = attrs.get("service")
+        date = attrs.get("date")
+
+        if not service or not date:
+            return attrs
+
+        # if date.tzinfo is None:
+        #     date = make_aware(date)
+
+        available_slots = get_available_timeslots(service, date.date())
+        date = date.replace(tzinfo=None)
+        if date not in available_slots:
+            raise serializers.ValidationError("This timeslot is not available.")
+
+        return attrs
